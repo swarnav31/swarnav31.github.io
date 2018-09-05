@@ -10,12 +10,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jpg|gif|svg|jpeg)$/,
+        loader: 'file-loader',
+        options: 
+        {
+          name: '[path][name].[ext]'
+        }
+      },
+      {
         test: /\.(scss)$/,
         use: [{
           loader: 'style-loader', // inject CSS to page
         }, {
           loader: 'css-loader', // translates CSS into CommonJS modules
-        }, {
+        },
+        {
           loader: 'postcss-loader', // Run post css actions
           options: {
             plugins: function () { // post css plugins, can be exported to postcss.config.js
@@ -27,7 +36,8 @@ module.exports = {
           }
         }, {
           loader: 'sass-loader' // compiles Sass to CSS
-        }]
+        }
+        ]
       }
     ]
   },
